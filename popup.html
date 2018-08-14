@@ -9,24 +9,40 @@
         #myform {
             width: 100px;
             height: auto;
+            padding: 10px;
+            border: 2px solid #783f6a;
         }
+
+        #Check1, #Check2, #Check3, #Check4 {
+            margin-bottom: 10px;
+            
+        }
+
+        button {
+            /* margin-bottom: 10px; */
+            border-radius: 10px;
+            
+            margin: 10px 0 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,.4),0 2px 4px rgba(0,0,0,.12);
+        }
+
+        
     </style>
     
 </head>
 <body>
     <form name="myform" id="myform" method="post">
     <INPUT TYPE="checkbox" NAME="checkbox" id="Check1">ID
-        <BR>
+        <br>
         <INPUT TYPE="checkbox" NAME="checkbox" id="Check2">NAME
-        <BR>
+        <br>
         <INPUT TYPE="checkbox" NAME="checkbox" id="Check3">TYPE
-        <BR>
+        <br>
         <INPUT TYPE="checkbox" NAME="checkbox" id="Check4">CLASS
-        <BR>
-
-        <button type="button" id="extract"> Extract</button>
+        <br>        
+        <button type="button" id="extract"> Extract</button>       
     </form>
-    <p id="success" class="checking"></p>
+   
     <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="popup.js"></script>
     

@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
-    "name": "Hello World",
-    "version":"1.0",
+    "name": "Attribute Scraper!",
+    "version":"1.01",
     "description": "A hello world extension",
     "browser_action": {
         "default_popup":"popup.html"
@@ -15,7 +15,7 @@
         "matches": [
             "<all_urls>"
         ],
-        "js":["jquery-3.3.1.min.js","content.js"]        
+        "js":["content.js"]        
     }]
 
 }

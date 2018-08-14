@@ -1,12 +1,15 @@
-$("button").click(function () {
+// responding to click
+$("#extract").click(function () {    
     valCheckbox();
 });
 
+// initialization
 let h_id, h_name, h_class, h_type;
 let chkArray = [];
 let valSet = ["id", "name", "type", "class"];
-let count = -1;
+let count = 0;
 
+// function to collecct the etails of checked boxes by fetching true or false.
 function valCheckbox() {
 
     h_id = document.getElementById("Check1").checked;
@@ -16,18 +19,22 @@ function valCheckbox() {
 
     chkArray = [h_id, h_name, h_class, h_type];
 
+    // check if atleast 1 option is selected.
     chkArray.forEach(element => {
         if (element === false) {
             count++;
         }
     })
 
+    //alert user to selech atleast one option.
     if (count === chkArray.length) {
         alert("Select atleast one option");
+        location.reload();
+        return false;
+        
     }
 
-    // let resArray = setValue(chkArray);
-
+    // sending the array to content script for further processing. 
     chrome.tabs.query({
         active: true,
         currentWindow: true
@@ -35,8 +42,12 @@ function valCheckbox() {
         chrome.tabs.sendMessage(tabs[0].id, {
             chkArray: chkArray
         }, function (response) {
-            document.getElementById("success").innerHTML = "Data Extracted!!"
+            alert("Data "+ response.success);
+            location.reload();
+                          
         });
     });
 
+   
 }
+

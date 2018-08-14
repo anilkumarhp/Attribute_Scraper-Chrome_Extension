@@ -1,22 +1,20 @@
+// receiving passed value from popup.js.
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     let res = request.chkArray;
     setValue(res);
     sendResponse({
-      Success: "Extracted.."
+      success: "Extracted.."
   });
 });
 
-let res = "";
-let h_id, h_name, h_class, h_type;
-let chkArray = [];
+//initialization
 let valSet = ["id", "name", "type", "class"];
 let head = "";
-let header = [];
-let count = -1;
 
+// function to determine the selected attribute name
 function setValue(args) {
-  console.log("enetering...");
+ 
   let valArray = [];
   for (let i = 0; i < args.length; i++) {
     if (args[i] === true) {
@@ -24,12 +22,13 @@ function setValue(args) {
       head += valSet[i] + ',';
     }
   }
-  console.log(valArray);
+  
   scraping(valArray);
 }
 
+//function to extract all the selected attributes values
 function scraping(atrval) {
-  console.log("Entered scraping..");
+  
   let doc = document.querySelectorAll('*');
   let data = [];
   let extracted = [];
@@ -62,10 +61,9 @@ function scraping(atrval) {
   }
 
   download_csv(extracted, nodes);
-
-
 }
 
+//funtion to write all data to csv file and download it.
 function download_csv(extracted, node) {
   var csv = head + "@nodename \n";
   let data = [];
@@ -88,7 +86,7 @@ function download_csv(extracted, node) {
     csv += "\n";
   });
 
-  console.log(csv);
+  
   let hiddenElement = document.createElement('a');
   hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
   hiddenElement.target = '_blank';
